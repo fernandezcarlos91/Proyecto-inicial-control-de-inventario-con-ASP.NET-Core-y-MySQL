@@ -1,0 +1,109 @@
+:root {
+  --color-navy: #1f3b57;
+  --color-teal: #0e7c86;
+  --color-bg: #f7f9fb;
+  --color-card: #ffffff;
+  --color-border: #e3e8ee;
+  --color-text: #23343f;
+  --color-muted: #6b7c8c;
+  --radius: 12px;
+}
+ 
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+ 
+/* Barra de navegación */
+.navbar {
+  background-color: var(--color-navy) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.nav-link {
+  color: rgba(255,255,255,0.85) !important;
+  font-weight: 500;
+}
+.nav-link:hover { color: #ffffff !important; }
+ 
+/* Tarjetas */
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+ 
+/* Botones */
+.btn-primary {
+  background-color: var(--color-teal);
+  border-color: var(--color-teal);
+  font-weight: 600;
+  border-radius: 8px;
+}
+.btn-primary:hover {
+  background-color: #0b6169;
+  border-color: #0b6169;
+}
+.btn-outline-secondary {
+  border-radius: 8px;
+}
+ 
+/* Tabla de productos */
+.table {
+  background-color: var(--color-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.table thead {
+  background-color: var(--color-navy);
+  color: white;
+}
+.table thead th {
+  border: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 14px 16px;
+}
+.table tbody td {
+  padding: 14px 16px;
+  vertical-align: middle;
+  border-color: var(--color-border);
+}
+.table tbody tr:hover { background-color: #f2f6f9; }
+ 
+/* Badges de stock */
+.badge-sin-stock { background-color: #d64550; }
+.badge-stock-bajo { background-color: #e0a112; }
+.badge-stock-ok { background-color: #2e9e6f; }
+ 
+/* Tarjetas de estadísticas (dashboard) */
+.stat-card {
+  border-radius: var(--radius);
+  padding: 24px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+}
+.stat-card .stat-icon {
+  width: 46px; height: 46px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  color: white;
+  background-color: var(--color-teal);
+  margin-bottom: 12px;
+}
+.stat-card .stat-value {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+.stat-card .stat-label {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}

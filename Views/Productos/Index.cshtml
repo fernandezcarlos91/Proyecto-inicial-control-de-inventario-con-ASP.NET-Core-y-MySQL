@@ -1,0 +1,89 @@
+@model List<InventarioWeb.Models.Producto>
+ 
+@{
+    ViewData["Title"] = "Inventario de Productos";
+}
+ 
+<h1>Inventario de Productos</h1>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i>@TempData["Mensaje"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+ 
+<a class="btn btn-primary mb-3" asp-action="Create">+ Nuevo producto</a>
+
+<form method="get" class="row g-2 align-items-center mb-4">
+    <div class="col-auto">
+        <select name="categoriaId" class="form-select" onchange="this.form.submit()">
+            <option value="">Todas las categorías</option>
+            @foreach (var c in (List<InventarioWeb.Models.Categoria>)ViewBag.Categorias)
+            {
+                var seleccionada = ViewBag.CategoriaSeleccionada == c.Id;
+                <option value="@c.Id" selected="@seleccionada">@c.Nombre</option>
+            }
+        </select>
+    </div>
+    <div class="col-auto">
+        <input type="text" name="busqueda" class="form-control"
+               placeholder="Buscar por nombre..." value="@ViewBag.Busqueda" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <a href="/Productos" class="btn btn-outline-secondary">Limpiar</a>
+    </div>
+</form>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Stock</th><th></th></tr>
+    </thead>
+    <tbody>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.Nombre</td>
+            <td>@p.Categoria?.Nombre</td>
+            <td>$@p.Precio.ToString("N0")</td>
+            <td>
+                @if (p.Stock == 0)
+                {
+                    <span class="badge bg-danger">Sin stock</span>
+                }
+                else
+                {
+                    @p.Stock
+                }
+            </td>
+            <td>
+                @if (p.Stock == 0)
+                {
+                    <span class="badge badge-sin-stock">Sin stock</span>
+                }
+                else if (p.Stock <= 5)
+                {
+                    <span class="badge badge-stock-bajo">@p.Stock — Stock bajo</span>
+                }
+                else
+                {
+                    <span class="badge badge-stock-ok">@p.Stock</span>
+                }
+            </td>
+<td>
+    <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-sm btn-outline-secondary me-1" title="Editar">
+        <i class="bi bi-pencil"></i>
+    </a>
+    <a asp-action="Delete" asp-route-id="@p.Id" class="btn btn-sm btn-outline-danger" title="Eliminar">
+        <i class="bi bi-trash"></i>
+    </a>
+</td>
+
+        </tr>
+    }
+    </tbody>
+</table>

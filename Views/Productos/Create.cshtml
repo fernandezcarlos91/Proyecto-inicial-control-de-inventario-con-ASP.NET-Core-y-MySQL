@@ -1,0 +1,32 @@
+@model InventarioWeb.Models.Producto
+ 
+<h1>Nuevo producto</h1>
+ 
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+ 
+    <div class="mb-3">
+        <label>Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+ 
+    <div class="mb-3">
+        <label>Precio</label>
+        <input asp-for="Precio" class="form-control" />
+    </div>
+ 
+    <div class="mb-3">
+        <label>Stock</label>
+        <input asp-for="Stock" class="form-control" />
+    </div>
+ 
+    <div class="mb-3">
+        <label>Categoría</label>
+        <select asp-for="CategoriaId" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Categorias, "Id", "Nombre"))">
+        </select>
+    </div>
+ 
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
