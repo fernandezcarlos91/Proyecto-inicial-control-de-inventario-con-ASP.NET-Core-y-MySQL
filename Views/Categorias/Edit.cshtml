@@ -1,0 +1,28 @@
+@model InventarioWeb.Models.Categoria
+
+@{
+    ViewData["Title"] = "Editar categoría";
+}
+
+<h1 class="h3 mb-4">Editar categoría</h1>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="col-md-6">
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <textarea asp-for="Descripcion" class="form-control" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <i class="bi bi-check-lg me-1"></i> Guardar cambios
+    </button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+</form>
